@@ -10,7 +10,7 @@ num_data_points = 2000
 
 # Create the problem set sizes with a normal distribution around the mean
 # with the specified minimum and maximum
-min_problems, max_problems = 5, 100
+min_problems, max_problems = 5, 100 
 mean_problems = (min_problems + max_problems) / 2
 std_dev_problems = (max_problems - mean_problems) / 3  # Assuming 99.7% of data within [min, max]
 
