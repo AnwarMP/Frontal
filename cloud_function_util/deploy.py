@@ -6,10 +6,10 @@ from google.cloud import storage
 
 storage_client = storage.Client()
 bucket = storage_client.get_bucket("frontal_ai_model") # remember to change the bucket name
-modelBlob = bucket.blob("model/model_2.pkl")
+modelBlob = bucket.blob("model/models_2.pkl")
 scalerBlob = bucket.blob("model/preprocessor.pkl")
-modelBlob.download_to_filename("/tmp/model_2.pkl")
-scalerBlob.download_to_filename("/tmp/preprocessor.pkl")
+modelBlob.download_to_filename("/tmp/models_2.pkl")
+scalerBlob.download_to_filename("/tmp/preprocessor.pkl")    
 model = joblib.load("/tmp/model_2.pkl")
 preprocessor = pickle.load(open('/tmp/preprocessor.pkl', 'rb'))
 
@@ -40,3 +40,6 @@ def predict(request):
 
     # Return the prediction
     return str(prediction)
+
+
+

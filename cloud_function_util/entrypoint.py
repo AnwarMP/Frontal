@@ -52,4 +52,3 @@ def predict(request):
 
     # Return the prediction
     return str(prediction.tolist())
-
