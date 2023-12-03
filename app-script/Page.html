@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frontal: ML Timeblocking</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        #timeblock-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Frontal: ML Timeblocking</h1>
+    <button id="timeblock-button">Timeblock</button>
+    <table id="scheduled-tasks">
+        <tr>
+            <th>Event Title</th>
+            <th>Scheduled Time</th>
+        </tr>
+    </table>
+    
+    <script>
+      document.getElementById("timeblock-button").addEventListener("click", function() {
+        google.script.run.withSuccessHandler(function(scheduledTasks) {
+          var table = document.getElementById("scheduled-tasks");
+          // Clear previous entries
+          table.innerHTML = '<tr><th>Event Title</th><th>Scheduled Time</th></tr>';
+          // Add new entries
+          scheduledTasks.forEach(function(task) {
+            var row = "<tr><td>" + task.title + "</td><td>" + task.time + "</td></tr>";
+            table.innerHTML += row;
+          });
+        }).scheduleTasks();
+      });
+    </script>
+</body>
+</html>
